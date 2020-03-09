@@ -16,7 +16,7 @@ var bodyParser  = require('body-parser');  //chamando o pacote body-parser
 var mongoose    = require('mongoose');
 var Usuario     = require('./app/models/usuario');
 
-mongoose.connect('mongodb://root:123456@jello.modulusmongo.net:27017/ity3Ryje'); //via Modulus
+mongoose.connect('mongodb://localhost:27017/node-api'); //via Modulus
 //mongoose.connect('mongodb://localhost/node-api'); //aqui caso queira executar de maneira local usando o MongoDb
 
 /** Configuração da variável 'app' para usar o 'bodyParser()'.
@@ -50,6 +50,7 @@ router.route('/usuarios')
 
     /* 1) Método: Criar Usuario (acessar em: POST http://localhost:8080/api/usuarios */
     .post(function(req, res) {
+        console.log(req.body);
         var usuario = new Usuario();
 
         //aqui setamos os campos do usuario (que virá do request)
