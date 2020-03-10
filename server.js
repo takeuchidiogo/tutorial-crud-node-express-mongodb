@@ -16,7 +16,7 @@ var bodyParser  = require('body-parser');  //chamando o pacote body-parser
 var mongoose    = require('mongoose');
 var Usuario     = require('./app/models/usuario');
 
-mongoose.connect('mongodb://localhost:27017/node-api'); //via Modulus
+mongoose.connect('mongodb://localhost:27017/node-api', { useNewUrlParser: true, useUnifiedTopology: true }); //via Modulus
 //mongoose.connect('mongodb://localhost/node-api'); //aqui caso queira executar de maneira local usando o MongoDb
 
 /** Configuração da variável 'app' para usar o 'bodyParser()'.
