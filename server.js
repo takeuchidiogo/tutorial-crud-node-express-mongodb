@@ -12,7 +12,7 @@
 /* Chamada das Packages que iremos precisar para a nossa aplicação */
 var express     = require('express'); //chamando o pacote express
 var app         = express(); //definção da nossa aplicação através do express
-var bodyParser  = require('body-parser');  //chamando o pacote body-parser
+//var bodyParser  = require('body-parser');  //chamando o pacote body-parser
 var mongoose    = require('mongoose');
 var Usuario     = require('./app/models/usuario');
 
@@ -22,8 +22,10 @@ mongoose.connect('mongodb://localhost:27017/node-api', { useNewUrlParser: true, 
 /** Configuração da variável 'app' para usar o 'bodyParser()'.
  * Ao fazermos isso nos permitirá retornar os dados a partir de um POST
  */
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({ extended: true }));
+//app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 /** Definição da porta onde será executada a nossa aplicação */
 var port = process.env.PORT || 8000;
@@ -120,7 +122,7 @@ router.route('/usuarios/:usuario_id')
     .delete(function(req, res) {
 
         //Função para excluir os dados e também verificar se há algum erro no momento da exclusão:
-        Usuario.remove({
+        Usuario.deleteOne({
         _id: req.params.usuario_id
         }, function(error) {
             if(error)
